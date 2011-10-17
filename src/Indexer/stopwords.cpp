@@ -1,4 +1,5 @@
 #include "stopwords.h"
+using namespace std;
 
 /*
  * ===  FUNCTION  ======================================================================
@@ -6,10 +7,10 @@
  *  Description:  Constructor
  * =====================================================================================
  */
-void
-    StopWords::StopWords ( string filename )
+StopWords::StopWords ( string filename  )
     {
-        ifstream fil(filename);
+		std::ifstream fil;
+		fil.open( filename.c_str() , ifstream::in);
         string inp;
 
         while(fil>>inp)
@@ -30,5 +31,4 @@ bool
     {
         return stops[inp];
     }		/* -----  end of function IsStopword  ----- */
-
 

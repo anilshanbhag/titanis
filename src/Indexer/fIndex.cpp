@@ -39,8 +39,17 @@ ForwardIndex::ForwardIndex ( )
  * =====================================================================================
  */
 	void
-ForwardIndex::AddToIndex (int docId, string text)
+ForwardIndex::AddToIndex ( int docId, string text )
 {
+	istringstream ss(text);	
+	string t;
+	map<string,int> in;
+	while(ss>>t){
+		if( stopWords.IsStopWord(t) ) continue;
+		if(in[t] ) in[t] += 1;
+		else in[t] = 1;
+	}
+	index[docId] = in;
 	return;
 }		/* -----  end of function ForwardIndex::AddToIndex  ----- */
 
@@ -51,8 +60,33 @@ ForwardIndex::AddToIndex (int docId, string text)
  * =====================================================================================
  */
 	void
-ForwardIndex::Insert ( int docId, vector<string>& tokens )
+ForwardIndex::Insert ( int docId, map<string,int>& tokens )
 {
-	map[docId] = tokens;
+	index[docId] = tokens;
 	return;
 }		/* -----  end of function ForwardIndex::Insert  ----- */
+
+
+/* 
+ * ===  FUNCTION  ======================================================================
+ *         Name:  ForwardIndex::Get
+ *  Description:  Get the index   
+ * =====================================================================================
+ */
+	int
+ForwardIndex::Get ( int docId ,map<string,int>& in)
+{
+	in = index[docId];
+	return 1;
+}		/* -----  end of function ForwardIndex::Get  ----- */
+
+int main()
+{
+	ForwardIndex fw;
+	map<string,int> n;
+	fw.AddToIndex(1, string("asd asdas asd"));
+	fw.Get( 1, n);
+	cout<<n["asd"]<<endl;
+	cout<<n["2"]<<endl;
+	return 0;
+}

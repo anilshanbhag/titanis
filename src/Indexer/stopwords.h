@@ -18,7 +18,7 @@
 
 #include <map>
 #include <string>
-#include <istream>
+#include <fstream>
 #include <iostream>
 using namespace std;
 
@@ -26,6 +26,6 @@ class StopWords {
     private:
         map<string,bool> stops;
     public:
-        void StopWords ( string filename );
+        StopWords ( string filename = "../stop_words.txt" );
         bool IsStopWord ( string inp );
 };

@@ -22,13 +22,18 @@
 
 #include <map>
 #include <vector>
+#include <sstream>
+
+#include "stopwords.h"
 using namespace std;
 
 class ForwardIndex {
 	private:
-		map<int, vector<string> > index;
+		map<int, map<string,int> > index;
+		StopWords stopWords;
 	public:
 		ForwardIndex();
 		void AddToIndex (int docId, string text);
-		void Insert( int  docId, vector<string>& tokens);
+		void Insert( int  docId, map<string,int>& tokens);
+		int Get( int docId, map<string,int>& in);
 };

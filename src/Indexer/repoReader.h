@@ -1,76 +1,42 @@
 /*
  * =====================================================================================
  *
- *       Filename:  repoReader.cpp
+ *       Filename:  repoReader.h
  *
- *    Description:  Repository Reader 
+ *    Description:  Repository Reader
  *
  *        Version:  1.0
- *        Created:  10/13/2011 04:03:32 PM
+ *        Created:  10/13/2011 04:04:01 PM
  *       Revision:  none
  *       Compiler:  gcc
  *
  *         Author:  Anil Shanbhag (), anilashanbhag@gmail.com
- *        Company:  
+ *        Company:
  *
  * =====================================================================================
  */
 
-#include "repoReader.h"
+#ifndef REPO_READER
+#define REPO_READER
+#endif
 
+#include <fstream>
+#include <queue>
+#include <string>
+#include <cstdlib>
+#include <dirent.h>
+#include <errno.h>
+#include <iostream>
+using namespace std;
 
-/* 
- * ===  FUNCTION  ======================================================================
- *         Name:  RepoReader::GetDir
- *  Description:  Lists files in the directory 
- * =====================================================================================
- */
-	int
-RepoReader::GetDir ( string dir )
-{
-	DIR *dp;
-	struct dirent *dirp;
-	if((dp  = opendir(dir.c_str())) == NULL) {
-		cout << "Error(" << errno << ") opening " << dir << endl;
-		return errno;
-	}
-
-	while ((dirp = readdir(dp)) != NULL) {
-		fileQueue.push(string(dirp->d_name));
-	}
-	
-	closedir(dp);
-	return 0;
-}
-
-RepoReader::RepoReader( string start = "../Repository/" ) 
-{
-	GetDir(start);
-}
-
-
-
-/* 
- * ===  FUNCTION  ======================================================================
- *         Name:  RepoReader::Empty
- *  Description:  Checks whether there are any more files in the repository
- * =====================================================================================
- */
-	bool
-RepoReader::Empty ( )
-{
-	return fileQueue.size() == 0;
-}		/* -----  end of function RepoReader::Empty  ----- */
-
-
-/* 
- * ===  FUNCTION  ======================================================================
- *         Name:  RepoReader::GetNext
- *  Description:  
- * =====================================================================================
- */
-	string
-RepoReader::GetNext ( )
-{
-	return "";
-}		/* -----  end of function RepoReader::GetNext  ----- */
+class RepoReader {
+	private:
+		string startPt;
+		queue<string> fileQueue;
+	public:
+		RepoReader(string start = "../../Repository/");
+		int GetDir (string dir);
+		bool Empty();
+		int Size();
+		string GetNext();
+};
