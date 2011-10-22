@@ -19,6 +19,25 @@
 #include "repoReader.h"
 #include <istream>
 
+string urlDecode(string &SRC) 
+{
+    string ret;
+    char ch;
+    int i, ii;
+    for (i=0; i<SRC.length(); i++) {
+        if (int(SRC[i])==37) {
+            sscanf(SRC.substr(i+1,2).c_str(), "%x", &ii);
+            ch=static_cast<char>(ii);
+            ret+=ch;
+            i=i+2;
+        } else {
+            ret+=SRC[i];
+        }
+    }
+    ret.erase(ret.end()-5,ret.end());
+    return (ret);
+}
+
 /*
  * ===  FUNCTION  ======================================================================
  *         Name:  RepoReader::GetDir
@@ -75,8 +94,8 @@ RepoReader::Size ( )
  *  Description:  Get the file contents of next file in the queue
  * =====================================================================================
  */
-	string
-RepoReader::GetNext ( )
+	void
+RepoReader::GetNext ( string& content )
 {
 	string filepath = startPt + fileQueue.front();
 	ifstream file;
@@ -85,7 +104,21 @@ RepoReader::GetNext ( )
 	while(file){
 		getline(file, line); output += line;
 	}
+	cout<<fileQueue.size()<<endl;
 	fileQueue.pop();
-	return output;
+	content = output;
+	//return output;
 }		/* -----  end of function RepoReader::GetNext  ----- */
 
+/* 
+ * ===  FUNCTION  ======================================================================
+ *         Name:  RepoReader::GetNextFile
+ *  Description:  Get the next file in the queue
+ * =====================================================================================
+ */
+	void
+RepoReader::GetNextURL ( string& url )
+{
+	url = urlDecode(fileQueue.front());
+	cout<<url<<endl;
+}		/* -----  end of function RepoReader::GetNextFile  ----- */

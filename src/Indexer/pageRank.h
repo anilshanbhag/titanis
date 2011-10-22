@@ -16,8 +16,8 @@
  * =====================================================================================
  */
 
-#ifndef PAGERANK
-#define PAGERANK
+#ifndef PAGERANK_H_
+#define PAGERANK_H_
 
 #include <map>
 #include <list>

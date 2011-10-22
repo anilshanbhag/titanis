@@ -16,6 +16,9 @@
  * =====================================================================================
  */
 
+#ifndef URLRES_H_
+#define URLRES_H_
+
 #include <list>
 #include <string>
 using namespace std;
@@ -25,6 +28,8 @@ class URLResolver {
 		string link;
 		list<string> links;
 	public:
-		URLResolver (string& l, list<string>& lst);
-		list<string>& Resolve();
+		URLResolver ( );
+		void Resolve(string& l, list<string>& lst);
 };
+
+#endif

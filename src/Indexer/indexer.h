@@ -15,15 +15,32 @@
  * =====================================================================================
  */
 
+#ifndef INDEXER_H_
+#define INDEXER_H_
+
 #include "docIndex.h"
 #include "fIndex.h"
-#include "rIndex.h"
+#include "iIndex.h"
+#include "pageRank.h"
+#include "tokenizer.h"
+#include "URLResolver.h"
+#include "repoReader.h"
 using namespace std;
 
 class Indexer {
 	private:
 		ForwardIndex fIndex;
 		InvertedIndex iIndex;
+		DocIndex docIn;
+		RepoReader rr;
+		Tokenizer tk;
+		URLResolver ur;
+		PageRank pr;
 	public:
 		Indexer();
+		void BuildFIndex();
+		void BuildIIndex();
+		void Debug();
 };
+
+#endif

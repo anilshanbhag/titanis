@@ -11,14 +11,12 @@
  *       Compiler:  gcc
  *
  *         Author:  Anil Shanbhag (), anilashanbhag@gmail.com
- *        Company:
  *
  * =====================================================================================
  */
 
-#ifndef REPO_READER
-#define REPO_READER
-#endif
+#ifndef REPO_READER_H_
+#define REPO_READER_H_
 
 #include <fstream>
 #include <queue>
@@ -38,5 +36,8 @@ class RepoReader {
 		int GetDir (string dir);
 		bool Empty();
 		int Size();
-		string GetNext();
+		void GetNext( string& content );
+		void GetNextURL( string& url );
 };
+
+#endif

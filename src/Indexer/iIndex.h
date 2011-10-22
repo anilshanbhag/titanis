@@ -16,9 +16,8 @@
  * =====================================================================================
  */
 
-#ifndef IINDEX
-#define IINDEX
-#endif
+#ifndef IINDEX_H_
+#define IINDEX_H_
 
 #include <string>
 #include <map>
@@ -34,3 +33,5 @@ class InvertedIndex {
 		void Put(string word, list<int> urls);
 		list<int>& Get(string word);
 };
+
+#endif

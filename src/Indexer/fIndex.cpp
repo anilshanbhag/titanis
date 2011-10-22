@@ -3,7 +3,7 @@
  *
  *       Filename:  fIndex.cpp
  *
- *    Description: Forward Index 
+ *    Description: Forward Index
  *
  *        Version:  1.0
  *        Created:  10/13/2011 02:24:50 PM
@@ -11,7 +11,7 @@
  *       Compiler:  gcc
  *
  *         Author:  Anil Shanbhag (), anilashanbhag@gmail.com
- *        Company:  
+ *        Company:
  *
  * =====================================================================================
  */
@@ -20,19 +20,19 @@
 using namespace std;
 
 
-/* 
+/*
  * ===  FUNCTION  ======================================================================
  *         Name:  ForwardIndex::ForwardIndex
  *  Description:  Constructor
  * =====================================================================================
  */
-	
+
 ForwardIndex::ForwardIndex ( )
 {
-	
+
 }		/* -----  end of function ForwardIndex::ForwardIndex  ----- */
 
-/* 
+/*
  * ===  FUNCTION  ======================================================================
  *         Name:  ForwardIndex::AddToIndex
  *  Description:  Adds a text from html page into index after tokenizing
@@ -41,7 +41,7 @@ ForwardIndex::ForwardIndex ( )
 	void
 ForwardIndex::AddToIndex ( int docId, string text )
 {
-	istringstream ss(text);	
+	istringstream ss(text);
 	string t;
 	map<string,int> in;
 	while(ss>>t){
@@ -53,7 +53,7 @@ ForwardIndex::AddToIndex ( int docId, string text )
 	return;
 }		/* -----  end of function ForwardIndex::AddToIndex  ----- */
 
-/* 
+/*
  * ===  FUNCTION  ======================================================================
  *         Name:  ForwardIndex::Insert
  *  Description:  Add an entry into the forward index
@@ -67,26 +67,27 @@ ForwardIndex::Insert ( int docId, map<string,int>& tokens )
 }		/* -----  end of function ForwardIndex::Insert  ----- */
 
 
-/* 
+/*
  * ===  FUNCTION  ======================================================================
  *         Name:  ForwardIndex::Get
- *  Description:  Get the index   
+ *  Description:  Get the index
  * =====================================================================================
  */
-	int
-ForwardIndex::Get ( int docId ,map<string,int>& in)
+	map<string,int>&
+ForwardIndex::Get ( int docId )
 {
-	in = index[docId];
-	return 1;
+    return index[docId];
 }		/* -----  end of function ForwardIndex::Get  ----- */
 
+/*
 int main()
 {
 	ForwardIndex fw;
 	map<string,int> n;
 	fw.AddToIndex(1, string("asd asdas asd"));
-	fw.Get( 1, n);
+	n = fw.Get( 1);
 	cout<<n["asd"]<<endl;
 	cout<<n["2"]<<endl;
 	return 0;
 }
+*/

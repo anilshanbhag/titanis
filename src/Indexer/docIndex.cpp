@@ -11,12 +11,12 @@
  *       Compiler:  gcc
  *
  *         Author:  Anil Shanbhag (), anilashanbhag@gmail.com
- *        Company:  
  *
  * =====================================================================================
  */
 
 #include "docIndex.h"
+#include <iostream>
 using namespace std;
 
 /* 
@@ -39,11 +39,16 @@ DocIndex::DocIndex ( )
  * =====================================================================================
  */
 	int
-DocIndex::Put ( string url )
+DocIndex::Put ( string& url )
 {
-	cur += 1;
-	index[url] = cur;
-	return cur;
+	int exists = Exists(url);
+	if (!exists) {
+		cur += 1;
+		index[url] = cur;
+		rIndex[cur] = url;
+		return cur;
+	}
+	return exists;
 }		/* -----  end of function DocIndex::Put  ----- */
 
 
@@ -54,7 +59,7 @@ DocIndex::Put ( string url )
  * =====================================================================================
  */
 	int
-DocIndex::Exists ( string url )
+DocIndex::Exists ( string& url )
 {
 	return index[url];
 }		/* -----  end of function DocIndex::Exists  ----- */
@@ -67,7 +72,37 @@ DocIndex::Exists ( string url )
  * =====================================================================================
  */
 	int
-DocIndex::Get ( string url )
+DocIndex::Get ( string& url )
 {
 	return index[url];
 }		/* -----  end of function DocIndex::Put  ----- */
+
+/* 
+ * ===  FUNCTION  ======================================================================
+ *         Name:  DocIndex::Get
+ *  Description:  Return the url of string 
+ * =====================================================================================
+ */
+	string&
+DocIndex::Get ( int docId )
+{
+	return rIndex[docId];
+}		/* -----  end of function DocIndex::Get  ----- */
+
+
+/* 
+ * ===  FUNCTION  ======================================================================
+ *         Name:  DocIndex::BatchConvert
+ *  Description:  Convert a list of urls into ids
+ * =====================================================================================
+ */
+	void
+DocIndex::BatchConvert ( list<string>& urls, list<int>& docIds )
+{
+	docIds.erase(docIds.begin(), docIds.end());
+	while(!urls.empty())
+	{
+		docIds.push_back(Put(urls.front()));
+		urls.pop_front();
+	}
+}		/* -----  end of function DocIndex::BatchConvert  ----- */

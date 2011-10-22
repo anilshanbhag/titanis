@@ -11,17 +11,15 @@
  *       Compiler:  gcc
  *
  *         Author:  Anil Shanbhag (), anilashanbhag@gmail.com
- *        Company:  
  *
  * =====================================================================================
  */
 
 #include "URLResolver.h"
 
-URLResolver::URLResolver (string& l, list<string>& lst) 
+URLResolver::URLResolver ( ) 
 {
-	link = l;
-	links = lst;
+
 }
 
 int countSlash (string& x)
@@ -48,13 +46,12 @@ int findRootPos (string& url)
 
 int findHostPos (string& url) 
 {
-	int pos = 0;
 	for(int i = url.size(); i >=0; i--)
 		if(url[i] == '/') return i;
 	return 0;
 }
 
-list<string>& URLResolver::Resolve()
+void URLResolver::Resolve(string& link, list<string>& links)
 {
 	string host,root;
 	// sample urls
@@ -93,6 +90,5 @@ list<string>& URLResolver::Resolve()
 			*it = host + *it;
 		}
 	}
-
 }
 

@@ -14,7 +14,8 @@
  *
  * =====================================================================================
  */
-
+#ifndef STOP_WORDS_H_
+#define STOP_WORDS_H_
 
 #include <map>
 #include <string>
@@ -29,3 +30,5 @@ class StopWords {
         StopWords ( string filename = "../stop_words.txt" );
         bool IsStopWord ( string inp );
 };
+
+#endif

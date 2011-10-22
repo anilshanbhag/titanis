@@ -16,9 +16,8 @@
  * =====================================================================================
  */
 
-#ifndef FINDEX
-#define FINDEX
-#endif
+#ifndef FINDEX_H_
+#define FINDEX_H_
 
 #include <map>
 #include <vector>
@@ -29,11 +28,13 @@ using namespace std;
 
 class ForwardIndex {
 	private:
-		map<int, map<string,int> > index;
 		StopWords stopWords;
 	public:
 		ForwardIndex();
+		map<int, map<string,int> > index;
 		void AddToIndex (int docId, string text);
 		void Insert( int  docId, map<string,int>& tokens);
-		int Get( int docId, map<string,int>& in);
+		map<string,int>& Get( int docId );
 };
+
+#endif

@@ -1,0 +1,13 @@
+Installation
+
+CTRL D -- quit
+
+CTRL\ s -- search for word
+CTRL-spacebar s -- search for window split horizontal
+CTRL-spacebar-spacebar s -- window split vertically
+
+:cscope find symbol 
+:scs
+
+:cs f s <symbol>
+:cs f (g -- global definations | c -- calls to function | s -- symbol | f -- file )

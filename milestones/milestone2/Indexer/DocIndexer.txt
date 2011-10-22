@@ -1,0 +1,35 @@
+Indexer ::
+
+Main Class Indexer 
+ |
+ |- Maintains Doc Index  , Forward Index , Inverted Index
+ |- Has Repo Reader
+
+class Forward Index >>
+ |
+ |- Mapping from doc id to words and their occurence
+ |-  
+
+class Inverted Index
+ |
+ |- Maintains the inverted index of words to document
+ |- 
+
+class DocIndex >>
+ |
+ |- Url Index : A map of string url to int
+
+class RepoReader -- knows all docs in repo -- returns string for file 
+ |
+ |- Should read file 
+ |- Return text
+ |- Return link ids from this file
+
+class Tokenizer -- tokenize html string >>
+ |
+ |- Would split the file into tokens
+ |- Return vector / list of tokens 
+
+class URLResolver -- resolve url >>
+ |
+ |- Resolves the url
